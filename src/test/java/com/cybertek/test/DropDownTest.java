@@ -54,6 +54,22 @@ public class DropDownTest {
         Assert.assertEquals(actualselectedoptions,expectedselectedoption,"First option selected aint expected");
 
 
+        productDropDown.selectByVisibleText("FamilyAlbum");
+
+        WebElement quantityBox = driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtQuantity"));
+        quantityBox.sendKeys("2");
+
+        WebElement calculatebutton = driver.findElement(By.cssSelector("input[type=submit]"));
+        calculatebutton.click();
+
+        int expectedprice = 160;
+
+        WebElement totalprice = driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtTotal"));
+
+        int actualprice = Integer.parseInt(totalprice.getAttribute("value"));
+        Assert.assertEquals(actualprice,expectedprice,"Price is Not As expected");
+
+
 
     }
 
